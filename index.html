@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="4-Day Lift" />
+  <meta name="description" content="A knee-conscious, upper-body-focused four-day lifting tracker." />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./icons/icon-180.png" />
+  <link rel="icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>4-Day Lift</title>
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">KNEE-CONSCIOUS PROGRAM</p>
+        <h1>4-Day Lift</h1>
+      </div>
+      <button id="installButton" class="icon-button" type="button" aria-label="Install app" title="Install app">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 15v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+      </button>
+    </header>
+
+    <main>
+      <section id="workoutView" class="view active" aria-labelledby="workoutHeading">
+        <div class="date-row">
+          <div>
+            <p id="todayLabel" class="muted"></p>
+            <h2 id="workoutHeading"></h2>
+          </div>
+          <button id="resetDayButton" class="text-button danger" type="button">Reset</button>
+        </div>
+
+        <nav id="dayTabs" class="day-tabs" aria-label="Workout days"></nav>
+
+        <section class="progress-card" aria-label="Workout progress">
+          <div>
+            <span id="progressText" class="progress-number">0 / 0</span>
+            <span class="muted">sets complete</span>
+          </div>
+          <div class="progress-track" aria-hidden="true"><div id="progressBar" class="progress-bar"></div></div>
+        </section>
+
+        <div id="exerciseList" class="exercise-list"></div>
+
+        <button id="finishWorkoutButton" class="primary-button finish-button" type="button">Finish workout</button>
+
+        <aside class="safety-card">
+          <strong>Knee rule:</strong> keep lower-body work controlled and well short of failure. Stop for sharp pain, instability, or meaningful swelling.
+        </aside>
+      </section>
+
+      <section id="historyView" class="view" aria-labelledby="historyHeading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SAVED ON THIS DEVICE</p>
+            <h2 id="historyHeading">Workout history</h2>
+          </div>
+          <button id="clearHistoryButton" class="text-button danger" type="button">Clear</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <section id="settingsView" class="view" aria-labelledby="settingsHeading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PREFERENCES</p>
+            <h2 id="settingsHeading">Settings</h2>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <label class="setting-row" for="unitSelect">
+            <span>
+              <strong>Weight unit</strong>
+              <small>Used throughout the workout log</small>
+            </span>
+            <select id="unitSelect">
+              <option value="lb">lb</option>
+              <option value="kg">kg</option>
+            </select>
+          </label>
+
+          <label class="setting-row" for="soundToggle">
+            <span>
+              <strong>Timer sound</strong>
+              <small>Play a tone when rest time ends</small>
+            </span>
+            <input id="soundToggle" class="switch" type="checkbox" checked />
+          </label>
+
+          <label class="setting-row" for="prefillToggle">
+            <span>
+              <strong>Prefill previous weights</strong>
+              <small>Use your most recent logged weight as a starting point</small>
+            </span>
+            <input id="prefillToggle" class="switch" type="checkbox" checked />
+          </label>
+        </div>
+
+        <div class="settings-card">
+          <h3>Install on iPhone</h3>
+          <ol class="install-steps">
+            <li>Open the hosted app in <strong>Safari</strong>.</li>
+            <li>Tap the <strong>Share</strong> button.</li>
+            <li>Choose <strong>Add to Home Screen</strong>.</li>
+            <li>Tap <strong>Add</strong>.</li>
+          </ol>
+          <p class="muted compact">After the first visit, the workout app is designed to keep working without a connection.</p>
+        </div>
+
+        <button id="eraseAllButton" class="secondary-button danger-outline" type="button">Erase all app data</button>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="App navigation">
+      <button class="nav-button active" data-view="workoutView" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 7v10M3 9v6m15-8v10m3-8v6M6 12h12"/></svg>
+        <span>Workout</span>
+      </button>
+      <button class="nav-button" data-view="historyView" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5m4-1v5l3 2"/></svg>
+        <span>History</span>
+      </button>
+      <button class="nav-button" data-view="settingsView" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
+        <span>Settings</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="timerDock" class="timer-dock" aria-live="polite">
+    <button id="timerToggle" type="button" class="timer-main">
+      <span id="timerLabel">Rest timer</span>
+      <strong id="timerDisplay">1:30</strong>
+    </button>
+    <div class="timer-controls">
+      <button class="timer-preset" data-seconds="60" type="button">1:00</button>
+      <button class="timer-preset active" data-seconds="90" type="button">1:30</button>
+      <button class="timer-preset" data-seconds="120" type="button">2:00</button>
+      <button id="timerReset" type="button" aria-label="Reset timer">↺</button>
+    </div>
+  </div>
+
+  <dialog id="installDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-heading">
+        <h2>Add to Home Screen</h2>
+        <button class="icon-button" value="cancel" aria-label="Close">×</button>
+      </div>
+      <div id="installDialogContent"></div>
+      <button class="primary-button" value="cancel">Done</button>
+    </form>
+  </dialog>
+
+  <dialog id="confirmDialog">
+    <form method="dialog" class="dialog-card">
+      <h2 id="confirmTitle">Confirm</h2>
+      <p id="confirmMessage"></p>
+      <div class="dialog-actions">
+        <button class="secondary-button" value="cancel">Cancel</button>
+        <button id="confirmActionButton" class="primary-button danger-button" value="confirm">Confirm</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="exerciseTemplate">
+    <article class="exercise-card">
+      <button class="exercise-heading" type="button" aria-expanded="false">
+        <span>
+          <span class="exercise-focus"></span>
+          <strong class="exercise-name"></strong>
+          <small class="exercise-target"></small>
+        </span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg>
+      </button>
+      <div class="exercise-body">
+        <p class="exercise-cue"></p>
+        <div class="set-header" aria-hidden="true">
+          <span>Set</span><span class="weight-heading">Weight</span><span>Reps</span><span>Done</span>
+        </div>
+        <div class="sets-list"></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
