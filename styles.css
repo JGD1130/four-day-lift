@@ -383,3 +383,12 @@ dialog { width: min(calc(100% - 28px), 480px); padding: 0; border: 1px solid var
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
 }
+
+
+/* Version 2 workout controls */
+.workout-clock,.notes-card{margin:14px 0;padding:15px;border:1px solid var(--border);border-radius:18px;background:var(--surface)}
+.workout-clock{display:flex;align-items:center;justify-content:space-between;gap:12px}.workout-clock strong{display:block;margin-top:3px;font-size:1.75rem;font-variant-numeric:tabular-nums}.clock-actions{display:flex;gap:8px}.clock-actions button{min-width:76px}
+.add-exercise{width:100%;margin:12px 0 14px}.notes-card label{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}.notes-card small{color:var(--muted)}.notes-card textarea{width:100%;resize:vertical;min-height:92px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);color:var(--text);font:inherit}
+.skip-exercise{float:right;margin:0 0 8px 10px;padding:7px 10px;border:1px solid var(--border);border-radius:9px;background:transparent;color:var(--muted);font-weight:800}.exercise-card.skipped{opacity:.55}.exercise-card.skipped .sets-list{pointer-events:none}.exercise-card.skipped .exercise-name{text-decoration:line-through}
+.field-label{display:flex;flex-direction:column;gap:6px;margin:12px 0;color:var(--muted);font-size:.78rem;font-weight:800}.field-label input,.field-label select{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2);color:var(--text);font:inherit}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.save-day-row{display:flex;align-items:center;gap:8px;margin:12px 0;color:var(--muted);font-size:.8rem}.history-meta,.history-note{margin:8px 0;color:var(--muted);font-size:.8rem}.history-note{padding:8px;border-radius:8px;background:var(--surface-2)}
+@media(max-width:520px){.workout-clock{align-items:flex-start}.clock-actions{flex-direction:column}.clock-actions button{padding:8px 12px}.field-grid{grid-template-columns:1fr}}

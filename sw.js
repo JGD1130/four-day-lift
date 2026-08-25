@@ -1,4 +1,4 @@
-const CACHE = 'four-day-lift-v1';
+const CACHE = 'four-day-lift-v2';
 const ASSETS = [
   './',
   './index.html',
