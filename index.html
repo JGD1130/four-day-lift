@@ -18,7 +18,7 @@
   <div id="app">
     <header class="app-header">
       <div>
-        <p class="eyebrow">KNEE-CONSCIOUS PROGRAM</p>
+        <p class="eyebrow">ROTATING 4-WORKOUT PROGRAM</p>
         <h1>4-Day Lift</h1>
       </div>
       <button id="installButton" class="icon-button" type="button" aria-label="Install app" title="Install app">
@@ -36,7 +36,17 @@
           <button id="resetDayButton" class="text-button danger" type="button">Reset</button>
         </div>
 
-        <nav id="dayTabs" class="day-tabs" aria-label="Workout days"></nav>
+        <section id="recommendationCard" class="recommendation-card" aria-label="Workout recommendation">
+          <div class="recommendation-copy">
+            <span class="eyebrow">SMART ROTATION</span>
+            <strong id="recommendationTitle">Recommended next: Workout A</strong>
+            <small id="recommendationDetail"></small>
+          </div>
+          <button id="recommendationButton" class="secondary-button" type="button">Open Workout A</button>
+          <div id="muscleStatus" class="muscle-status" aria-label="Last trained status"></div>
+        </section>
+
+        <nav id="dayTabs" class="day-tabs" aria-label="Workout rotation"></nav>
 
         <section class="workout-clock" aria-label="Workout timer"><div><span class="muted">WORKOUT TIME</span><strong id="workoutTimerDisplay">0:00</strong></div><div class="clock-actions"><button id="workoutTimerToggle" class="secondary-button" type="button">Start</button><button id="workoutTimerFinish" class="primary-button" type="button">Finish</button></div></section>
 
@@ -153,7 +163,22 @@
     </div>
   </div>
 
-  <dialog id="addExerciseDialog"><form method="dialog" class="dialog-card" id="customExerciseForm"><div class="dialog-heading"><h2>Add an exercise</h2><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label class="field-label">Exercise name<input id="customName" required placeholder="e.g., Machine row"></label><div class="field-grid"><label class="field-label">Sets<input id="customSets" type="number" min="1" max="10" value="3"></label><label class="field-label">Rep target<input id="customReps" value="8–12"></label></div><label class="field-label">Category<select id="customCategory"><option>Chest</option><option>Back</option><option>Shoulders</option><option>Arms</option><option>Traps</option><option>Lower Body</option><option>Cardio</option><option selected>Custom</option></select></label><label class="field-label">Note<input id="customNote" placeholder="Optional cue or reminder"></label><label class="save-day-row"><input id="saveCustomDay" type="checkbox"> Save to this day <small>(make it part of this day going forward)</small></label><button id="addExerciseConfirm" class="primary-button" type="button">Add exercise</button></form></dialog>
+  <dialog id="addExerciseDialog"><form method="dialog" class="dialog-card" id="customExerciseForm"><div class="dialog-heading"><h2>Add an exercise</h2><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label class="field-label">Exercise name<input id="customName" required placeholder="e.g., Machine row"></label><div class="field-grid"><label class="field-label">Sets<input id="customSets" type="number" min="1" max="10" value="3"></label><label class="field-label">Rep target<input id="customReps" value="8–12"></label></div><label class="field-label">Category<select id="customCategory"><option>Chest</option><option>Back</option><option>Shoulders</option><option>Arms</option><option>Traps</option><option>Lower Body</option><option>Cardio</option><option selected>Custom</option></select></label><label class="field-label">Note<input id="customNote" placeholder="Optional cue or reminder"></label><label class="save-day-row"><input id="saveCustomDay" type="checkbox"> Save to this workout <small>(make it part of this workout going forward)</small></label><button id="addExerciseConfirm" class="primary-button" type="button">Add exercise</button></form></dialog>
+
+  <dialog id="formDialog">
+    <form method="dialog" class="dialog-card form-dialog-card">
+      <div class="dialog-heading">
+        <div><span class="eyebrow">FORM GUIDE</span><h2 id="formTitle">Exercise form</h2></div>
+        <button class="icon-button" value="cancel" aria-label="Close">×</button>
+      </div>
+      <div id="formVisual" class="form-visual"></div>
+      <div class="form-guide-grid">
+        <section><h3>Do this</h3><ul id="formCues"></ul></section>
+        <section><h3>Watch for</h3><ul id="formAvoid"></ul></section>
+      </div>
+      <button class="primary-button" value="cancel">Done</button>
+    </form>
+  </dialog>
 
   <dialog id="installDialog">
     <form method="dialog" class="dialog-card">
