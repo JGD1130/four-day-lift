@@ -6,7 +6,7 @@ const STORAGE_KEYS = {
   settings: 'fourDayLift.settings.v1'
 };
 
-const LEGACY_TO_ROTATION = { monday:'a', tuesday:'b', thursday:'c', saturday:'d' };
+const LEGACY_TO_ROTATION = { monday:'a1', tuesday:'b1', thursday:'c1', saturday:'d1', a:'a1', b:'b1', c:'c1', d:'d1' };
 const ROTATION = ['a','b','c','d'];
 
 const FORM_GUIDES = {
@@ -43,60 +43,94 @@ function cardio(id){return{id,name:'Strider cardio',focus:'Cardio · finisher',s
 function crunch(id){return ex(id,'Abdominal crunch machine','Core',2,'12–20','Exhale as you crunch; keep the movement controlled rather than pulling with the arms.',60,['Core'],FORM_GUIDES.crunch);}
 
 const WORKOUTS = [
-  {id:'a',short:'A',title:'Chest, Triceps & Mid Traps',muscles:['Chest','Triceps','Traps','Shoulders'],exercises:[
-    ex('machine-chest-press','Machine chest press or dumbbell bench press','Chest',3,'6–10','Use the option that lets you stay stable without uncomfortable pressure through the knee.',120,['Chest','Triceps','Shoulders']),
-    ex('incline-press','Incline machine or dumbbell press','Upper chest',3,'8–12','Keep the shoulder blades set and use a controlled lowering phase.',120,['Chest','Triceps','Shoulders']),
-    ex('pec-deck','Pec deck or cable fly','Chest',2,'12–15','Use a comfortable stretch; do not let the shoulders roll forward.',75,['Chest'],FORM_GUIDES.pecFly),
-    ex('face-pull','Face pull','Middle traps · rear shoulders',3,'12–20','Pull toward the forehead, separate the rope ends, and avoid shrugging.',75,['Traps','Shoulders'],FORM_GUIDES.facePull),
-    ex('trx-posture-a','TRX Posture Series — T → Y → W','Posture · middle/lower traps · rear shoulders',2,'6–10 sequences','Lean back with your body straight and straps under tension. Pull into a T, transition to a Y, then a W. Keep your chest up and shoulder blades controlled. T → Y → W = 1 rep. Adjust difficulty with foot position; prioritize control over resistance.',75,['Traps','Shoulders'],FORM_GUIDES.trx),
-    ex('triceps-pressdown','Rope triceps pressdown','Triceps',3,'10–15','Keep the elbows near the ribs and fully straighten under control.',75,['Triceps'],FORM_GUIDES.ropePressdown),
-    ex('cable-bar-pushdown','Triceps cable bar pushdown','Triceps',3,'10–15','Keep elbows pinned near your sides. Press the bar down to full extension without leaning over it.',75,['Triceps'],FORM_GUIDES.barPushdown),
+  {id:'a1',base:'a',variant:1,short:'A1',title:'Chest & Triceps — Press / Fly',muscles:['Chest','Triceps','Traps','Shoulders'],exercises:[
+    ex('machine-chest-press','Machine chest press or dumbbell bench press','Chest thickness',2,'6–10','Set the shoulder blades and press through a comfortable, pain-free range.',120,['Chest','Triceps','Shoulders']),
+    ex('incline-press','Slight-incline machine or dumbbell press','Upper chest',2,'8–12','Use a modest incline; keep the shoulder blades set and neck neutral.',120,['Chest','Triceps','Shoulders']),
+    ex('pec-deck','Pec deck or cable fly','Chest',2,'10–15','Use a comfortable stretch; stop before the shoulders roll forward.',75,['Chest'],FORM_GUIDES.pecFly),
+    ex('high-low-fly-a1','High-to-low cable fly','Lower chest',2,'10–15','Bring the handles down and inward toward the lower chest/upper abdomen without rolling the shoulders forward.',75,['Chest'],FORM_GUIDES.pecFly),
+    ex('face-pull','Face pull','Mid traps · rear shoulders',2,'12–20','Pull toward the forehead, separate the rope ends, and avoid shrugging.',75,['Traps','Shoulders'],FORM_GUIDES.facePull),
+    ex('triceps-pressdown','Rope triceps pressdown','Triceps',2,'10–15','Keep the elbows near the ribs and fully straighten under control.',75,['Triceps'],FORM_GUIDES.ropePressdown),
     ex('overhead-triceps-a','Overhead cable triceps extension','Triceps',2,'10–15','Keep the upper arms steady and avoid arching the lower back.',75,['Triceps'],FORM_GUIDES.overheadTri),
-    ex('hamstring-curl','Seated hamstring curl','KNEE · hamstrings',3,'10–15','Use a smooth range that feels comfortable at the replaced knee; stay well short of failure.',90,['Lower Body']),
-    crunch('crunch-a'),
-    cardio('strider-a')
+    ex('hamstring-curl','Seated hamstring curl','KNEE · hamstrings',2,'10–15','Use a smooth comfortable range and stay short of grinding reps.',90,['Lower Body']),
+    crunch('crunch-a1'), cardio('strider-a1')
   ]},
-  {id:'b',short:'B',title:'Back, Biceps & Upper/Mid Traps',muscles:['Back','Biceps','Traps'],exercises:[
-    ex('lat-pulldown-b','Neutral-grip lat pulldown','Lats',3,'8–12','Drive the elbows down and avoid leaning far backward.',120,['Back','Biceps'],FORM_GUIDES.latPulldown),
-    ex('chest-supported-row','Chest-supported row','Middle traps · upper back',3,'8–12','Let the shoulder blades reach slightly forward, then pull them together before finishing the row.',120,['Back','Traps','Biceps'],FORM_GUIDES.chestRow),
-    ex('one-arm-dumbbell-bench-row-b','One-arm dumbbell bench row','Back · lats · middle traps',3,'8–12 per side','Keep your neck neutral and shoulders level. Pull the elbow toward the hip without rotating the torso to gain extra range.',105,['Back','Traps','Biceps'],FORM_GUIDES.dumbbellBenchRow),
-    ex('seated-cable-row','Seated cable row','Back · middle traps',2,'10–12','Keep the torso steady and elbows roughly 45–60 degrees from the body.',105,['Back','Traps','Biceps'],FORM_GUIDES.seatedRow),
-    ex('seated-shrug-b','Seated dumbbell or machine shrug','Upper traps',3,'10–15','Lift the shoulders straight toward the ears, pause, and lower slowly. Do not roll them.',90,['Traps'],FORM_GUIDES.shrug),
-    ex('cable-pullover-b','Straight-arm cable pullover','Lats',3,'10–15','Keep a soft elbow bend and sweep the arms toward the thighs without turning it into a triceps press.',75,['Back'],FORM_GUIDES.pullover),
-    ex('drag-curl-b','Barbell or cable drag curl','Biceps',3,'8–12','Keep the bar or cable close to your torso, let the elbows drift slightly behind you, and avoid leaning back.',75,['Biceps'],FORM_GUIDES.dragCurl),
-    ex('hammer-curl-b','Hammer curl','Biceps · forearms',2,'10–15','Use a neutral grip and avoid swinging.',75,['Biceps']),
-    ex('hip-sled','Hip sled','KNEE · lower body',3,'10–15','Use a comfortable range and controlled tempo. Do not chase depth or heavy loading; keep several reps in reserve.',105,['Lower Body'],FORM_GUIDES.hipSled),
-    ex('hip-abduction-b','Hip-abduction machine','Lower body · outer hips',2,'12–20','Keep the pelvis steady and use a controlled range.',75,['Lower Body']),
-    crunch('crunch-b'),
-    cardio('strider-b')
+  {id:'a2',base:'a',variant:2,short:'A2',title:'Chest & Triceps — Alternate',muscles:['Chest','Triceps','Traps','Shoulders'],exercises:[
+    ex('flat-db-press-a2','Flat dumbbell or machine press','Chest thickness',2,'8–12','Use a neutral-to-comfortable grip and keep shoulder blades supported.',120,['Chest','Triceps','Shoulders']),
+    ex('low-incline-db-a2','Low-incline dumbbell press','Chest',2,'8–12','Keep the incline low and use only the shoulder range that feels stable.',120,['Chest','Triceps','Shoulders']),
+    ex('high-low-fly-a2','High-to-low cable fly','Lower chest',2,'10–15','Sweep down and inward with a soft elbow bend; do not chase an excessive stretch.',75,['Chest'],FORM_GUIDES.pecFly),
+    ex('trx-posture-a2','TRX Posture Series — T → Y → W','Posture · traps · rear shoulders',2,'6–10 sequences','Keep the body straight and move deliberately through T, Y and W.',75,['Traps','Shoulders'],FORM_GUIDES.trx),
+    ex('cable-bar-pushdown','Triceps cable bar pushdown','Triceps',2,'10–15','Keep elbows pinned near your sides and press to full extension.',75,['Triceps'],FORM_GUIDES.barPushdown),
+    ex('seated-dip-a2','Seated dip machine','Triceps · lower chest',2,'8–12','Set the seat so the shoulders stay comfortable; avoid an excessively deep return.',90,['Triceps','Chest'],FORM_GUIDES.dip),
+    ex('hamstring-curl-a2','Seated hamstring curl','KNEE · hamstrings',2,'10–15','Use a smooth comfortable range and stay short of grinding reps.',90,['Lower Body']),
+    crunch('crunch-a2'), cardio('strider-a2')
   ]},
-  {id:'c',short:'C',title:'Shoulders, Arms & Lower Traps',muscles:['Shoulders','Biceps','Triceps','Traps'],exercises:[
-    ex('shoulder-press','Seated machine or dumbbell shoulder press','Shoulders',3,'6–10','Use back support and keep the ribs down.',120,['Shoulders','Triceps']),
-    ex('lateral-raise','Dumbbell or cable lateral raise','Side shoulders',3,'12–20','Lead with the elbows and stop near shoulder height.',75,['Shoulders'],FORM_GUIDES.lateralRaise),
-    ex('reverse-pec-deck','Reverse pec deck','Middle traps · rear shoulders',3,'12–20','Keep the chest against the pad, lead with the elbows, and avoid shrugging.',75,['Shoulders','Traps'],FORM_GUIDES.reversePec),
-    ex('standing-y-raise-c','Standing cable Y raise','Lower traps',3,'10–15','Use light resistance. Reach diagonally into a Y without lifting the shoulders toward the ears.',75,['Traps','Shoulders'],FORM_GUIDES.standingY),
-    ex('trx-posture-c','TRX Posture Series — T → Y → W','Posture · middle/lower traps · rear shoulders',2,'6–10 sequences','Lean back with your body straight and straps under tension. Pull into a T, transition to a Y, then a W. Keep your chest up and shoulder blades controlled. T → Y → W = 1 rep. Adjust difficulty with foot position; prioritize control over resistance.',75,['Traps','Shoulders'],FORM_GUIDES.trx),
-    ex('curl-c','EZ-bar or cable curl','Biceps',3,'10–15','Keep the upper arms steady and avoid using momentum.',75,['Biceps']),
-    ex('overhead-triceps-c','Overhead cable triceps extension','Triceps',3,'10–15','Use a controlled stretch and keep the upper arms fixed.',75,['Triceps'],FORM_GUIDES.overheadTri),
-    ex('seated-dip-c','Seated dip machine','Triceps · chest',3,'8–12','Keep the shoulders down and press through the handles with controlled elbow extension.',90,['Triceps','Chest'],FORM_GUIDES.dip),
-    ex('hoist-squat','Hoist squat machine — light','KNEE · lower body',2,'10–15','Light weight, comfortable depth, controlled tempo. Keep several repetitions in reserve and stop if the knee becomes irritated.',105,['Lower Body'],FORM_GUIDES.hoistSquat),
-    ex('terminal-knee-extension','Light band terminal knee extension','KNEE · quadriceps',2,'15–20 per leg','Straighten gently, squeeze the quadriceps for one second, and use only light resistance.',60,['Lower Body']),
-    crunch('crunch-c'),
-    cardio('strider-c')
+  {id:'b1',base:'b',variant:1,short:'B1',title:'Back & Biceps — Row Thickness',muscles:['Back','Biceps','Traps'],exercises:[
+    ex('chest-supported-row','Chest-supported row','Back thickness',2,'8–12','Keep chest supported and neck neutral; pull shoulder blades together before finishing with the elbows.',120,['Back','Traps','Biceps'],FORM_GUIDES.chestRow),
+    ex('one-arm-dumbbell-bench-row-b','One-arm dumbbell bench row','Back thickness',2,'8–12 per side','Keep shoulders level and pull the elbow toward the hip without rotating the torso.',105,['Back','Traps','Biceps'],FORM_GUIDES.dumbbellBenchRow),
+    ex('seated-cable-row','Seated cable row','Back thickness',2,'10–12','Keep the torso steady and elbows roughly 45–60 degrees from the body.',105,['Back','Traps','Biceps'],FORM_GUIDES.seatedRow),
+    ex('lat-pulldown-b','Neutral-grip lat pulldown','Lats',2,'8–12','Drive elbows down and avoid leaning far backward.',120,['Back','Biceps'],FORM_GUIDES.latPulldown),
+    ex('cable-pullover-b','Straight-arm cable pullover','Lats',2,'10–15','Sweep the arms toward the thighs with a soft, nearly fixed elbow bend.',75,['Back'],FORM_GUIDES.pullover),
+    ex('drag-curl-b','Barbell or cable drag curl','Biceps',2,'8–12','Keep the bar/cable close and avoid leaning back.',75,['Biceps'],FORM_GUIDES.dragCurl),
+    ex('seated-shrug-b','Seated dumbbell or machine shrug','Upper traps',2,'10–15','Lift straight up and down; do not roll the shoulders.',90,['Traps'],FORM_GUIDES.shrug),
+    ex('hip-sled','Hip sled','KNEE · lower body',2,'10–15','Use a comfortable range, controlled tempo and stable foot position.',105,['Lower Body'],FORM_GUIDES.hipSled),
+    crunch('crunch-b1'), cardio('strider-b1')
   ]},
-  {id:'d',short:'D',title:'Upper Body & Trap Reinforcement',muscles:['Chest','Back','Shoulders','Triceps','Biceps','Traps'],exercises:[
-    ex('smith-incline-d','Smith machine incline bench press','Upper chest',3,'8–12','Use a moderate incline, set the shoulder blades, and lower toward the upper chest with control.',120,['Chest','Triceps','Shoulders'],FORM_GUIDES.smithIncline),
-    ex('smith-flat-d','Smith machine flat bench press','Chest',3,'8–12','Position the bench so the bar tracks comfortably to the mid/lower chest.',120,['Chest','Triceps','Shoulders'],FORM_GUIDES.smithFlat),
-    ex('smith-shrug-d','Smith machine shoulder shrugs','Upper traps',3,'10–15','Move the shoulders straight up and down. Pause briefly at the top; do not roll.',90,['Traps'],FORM_GUIDES.shrug),
-    ex('smith-close-d','Smith machine close-grip triceps press','Triceps · chest',3,'8–12','Use a moderately close grip, keep wrists stacked, and keep elbows closer to the torso.',105,['Triceps','Chest'],FORM_GUIDES.smithClose),
-    ex('lat-pulldown-d','Neutral-grip lat pulldown','Lats',3,'8–12','Keep the chest tall and pull the elbows toward the ribs.',105,['Back','Biceps'],FORM_GUIDES.latPulldown),
-    ex('one-arm-row','One-arm seated cable row','Back · middle traps',2,'10–12 per side','Keep the torso square and pull the shoulder blade back before bending the elbow fully.',90,['Back','Traps','Biceps'],FORM_GUIDES.oneArmRow),
-    ex('standing-y-raise-d','Standing cable Y raise','Lower traps',2,'12–15','Keep the load light and reach into a wide Y without shrugging.',75,['Traps','Shoulders'],FORM_GUIDES.standingY),
-    ex('hammer-curl-d','Hammer curl','Biceps · forearms',2,'10–15','Keep the wrists neutral and elbows quiet.',75,['Biceps']),
-    ex('rdl-pullthrough','Light dumbbell Romanian deadlift or cable pull-through','KNEE · hamstrings/glutes',2,'8–12','Treat this as a hip hinge, not a squat. Use a slight knee bend and stop if balance or knee comfort is poor.',105,['Lower Body'],FORM_GUIDES.rdl),
-    ex('glute-bridge-d','Glute bridge or supported hip thrust','KNEE · glutes',2,'10–15','Use only a comfortable knee bend and drive the motion from the hips.',90,['Lower Body']),
-    crunch('crunch-d'),
-    cardio('strider-d')
+  {id:'b2',base:'b',variant:2,short:'B2',title:'Back & Biceps — Alternate Rows',muscles:['Back','Biceps','Traps'],exercises:[
+    ex('machine-row-b2','Machine row','Back thickness',2,'8–12','Keep the chest tall or supported and pull without shrugging.',120,['Back','Traps','Biceps'],FORM_GUIDES.chestRow),
+    ex('one-arm-row-b2','One-arm seated cable row','Back thickness',2,'10–12 per side','Stay square and pull the shoulder blade back before finishing with the elbow.',90,['Back','Traps','Biceps'],FORM_GUIDES.oneArmRow),
+    ex('wide-cable-row-b2','Wide-grip seated cable row','Upper/mid back thickness',2,'10–12','Pull toward the lower chest with elbows out comfortably; keep the neck neutral.',105,['Back','Traps','Biceps'],FORM_GUIDES.seatedRow),
+    ex('neutral-pulldown-b2','Neutral-grip lat pulldown','Lats',2,'8–12','Pull elbows toward ribs without turning it into a backward lean.',105,['Back','Biceps'],FORM_GUIDES.latPulldown),
+    ex('straight-arm-pulldown-b2','Straight-arm cable pulldown','Lats',2,'10–15','Keep ribs stacked and elbows softly bent.',75,['Back'],FORM_GUIDES.pullover),
+    ex('hammer-curl-b2','Hammer curl','Biceps · forearms',2,'10–15','Use a neutral grip and avoid swinging.',75,['Biceps']),
+    ex('cable-shrug-b2','Cable or machine shrug','Upper traps',2,'10–15','Move shoulders straight up and down with the head neutral.',90,['Traps'],FORM_GUIDES.shrug),
+    ex('hip-abduction-b2','Hip-abduction machine','Lower body · outer hips',2,'12–20','Keep the pelvis steady and use a controlled range.',75,['Lower Body']),
+    crunch('crunch-b2'), cardio('strider-b2')
+  ]},
+  {id:'c1',base:'c',variant:1,short:'C1',title:'Shoulders & Arms — Stability',muscles:['Shoulders','Biceps','Triceps','Traps'],exercises:[
+    ex('shoulder-press','Seated machine or dumbbell shoulder press','Shoulders',2,'6–10','Use back support, ribs down and only a comfortable shoulder range.',120,['Shoulders','Triceps']),
+    ex('lateral-raise','Dumbbell or cable lateral raise','Side shoulders',2,'12–20','Lead with elbows and stop near shoulder height or earlier if needed.',75,['Shoulders'],FORM_GUIDES.lateralRaise),
+    ex('reverse-pec-deck','Reverse pec deck','Rear shoulders · mid traps',2,'12–20','Keep chest against pad, lead with elbows and avoid shrugging.',75,['Shoulders','Traps'],FORM_GUIDES.reversePec),
+    ex('standing-y-raise-c','Standing cable Y raise','Lower traps',2,'10–15','Use light resistance and reach into a Y without shrugging.',75,['Traps','Shoulders'],FORM_GUIDES.standingY),
+    ex('machine-lateral-c1','Machine lateral raise','Side shoulders',2,'10–15','Use a controlled range and stop before the shoulders begin to shrug.',75,['Shoulders'],FORM_GUIDES.lateralRaise),
+    ex('curl-c','EZ-bar or cable curl','Biceps',2,'10–15','Keep upper arms steady and avoid momentum.',75,['Biceps']),
+    ex('overhead-triceps-c','Overhead cable triceps extension','Triceps',2,'10–15','Use a controlled stretch and keep upper arms fixed.',75,['Triceps'],FORM_GUIDES.overheadTri),
+    ex('seated-dip-c','Seated dip machine','Triceps · chest',2,'8–12','Keep shoulders down and avoid a deep shoulder stretch.',90,['Triceps','Chest'],FORM_GUIDES.dip),
+    ex('hoist-squat','Hoist squat machine — light','KNEE · lower body',2,'10–15','Light weight, comfortable depth, controlled tempo.',105,['Lower Body'],FORM_GUIDES.hoistSquat),
+    ex('single-leg-kickback-c','Single-leg kickback machine','Glutes · lower body',2,'10–15 per leg','Keep the pelvis square and move from the hip without arching the back.',75,['Lower Body']),
+    crunch('crunch-c1'), cardio('strider-c1')
+  ]},
+  {id:'c2',base:'c',variant:2,short:'C2',title:'Shoulders & Arms — Alternate',muscles:['Shoulders','Biceps','Triceps','Traps'],exercises:[
+    ex('neutral-machine-press-c2','Neutral-grip machine shoulder press','Shoulders',2,'8–12','Use back support and a neutral grip; stop short of any unstable or pinching range.',105,['Shoulders','Triceps']),
+    ex('cable-lateral-c2','Cable lateral raise','Side shoulders',2,'10–15','Lead with the elbow and keep the shoulder down.',75,['Shoulders'],FORM_GUIDES.lateralRaise),
+    ex('rear-delt-cable-c2','Cable rear-delt fly','Rear shoulders · mid traps',2,'12–15','Use light resistance and keep the neck neutral.',75,['Shoulders','Traps'],FORM_GUIDES.reversePec),
+    ex('face-pull-c2','Face pull','Rear shoulders · mid traps',2,'12–20','Pull toward forehead and rotate hands apart without forcing range.',75,['Shoulders','Traps'],FORM_GUIDES.facePull),
+    ex('standing-y-c2','Standing cable Y raise','Lower traps',2,'10–15','Keep load light and ribs stacked.',75,['Traps','Shoulders'],FORM_GUIDES.standingY),
+    ex('drag-curl-c2','Barbell or cable drag curl','Biceps',2,'8–12','Keep bar/cable close and shoulders relaxed.',75,['Biceps'],FORM_GUIDES.dragCurl),
+    ex('rope-pressdown-c2','Rope triceps pressdown','Triceps',2,'10–15','Keep elbows near ribs and shoulders down.',75,['Triceps'],FORM_GUIDES.ropePressdown),
+    ex('single-leg-kickback-c2','Single-leg kickback machine','Glutes · lower body',2,'10–15 per leg','Keep pelvis square and move from the hip.',75,['Lower Body']),
+    crunch('crunch-c2'), cardio('strider-c2')
+  ]},
+  {id:'d1',base:'d',variant:1,short:'D1',title:'Smith Day — Chest / Back Thickness',muscles:['Chest','Back','Shoulders','Triceps','Biceps','Traps'],exercises:[
+    ex('smith-incline-d','Smith machine incline bench press','Upper chest',2,'8–12','Use a moderate incline and keep shoulder blades set.',120,['Chest','Triceps','Shoulders'],FORM_GUIDES.smithIncline),
+    ex('smith-flat-d','Smith machine flat bench press','Chest thickness',2,'8–12','Track to mid/lower chest with shoulders supported.',120,['Chest','Triceps','Shoulders'],FORM_GUIDES.smithFlat),
+    ex('smith-shrug-d','Smith machine shoulder shrugs','Upper traps',2,'10–15','Move shoulders straight up and down; keep head neutral.',90,['Traps'],FORM_GUIDES.shrug),
+    ex('smith-close-d','Smith machine close-grip triceps press','Triceps · chest',2,'8–12','Use a moderately close grip and keep wrists stacked.',105,['Triceps','Chest'],FORM_GUIDES.smithClose),
+    ex('lat-pulldown-d','Neutral-grip lat pulldown','Lats',2,'8–12','Keep chest tall and pull elbows toward ribs.',105,['Back','Biceps'],FORM_GUIDES.latPulldown),
+    ex('hammer-curl-d','Hammer curl','Biceps · forearms',2,'10–15','Keep wrists neutral and elbows quiet.',75,['Biceps']),
+    ex('rdl-pullthrough','Light dumbbell Romanian deadlift or cable pull-through','KNEE · hamstrings/glutes',2,'8–12','Hip hinge with a neutral neck and spine.',105,['Lower Body'],FORM_GUIDES.rdl),
+    ex('smith-row-d1','Smith machine bent-over row','Back thickness · final lift',2,'8–12','Hinge to a stable torso angle, keep neck neutral and row toward the lower ribs without jerking.',120,['Back','Traps','Biceps'],FORM_GUIDES.seatedRow),
+    crunch('crunch-d1'), cardio('strider-d1')
+  ]},
+  {id:'d2',base:'d',variant:2,short:'D2',title:'Upper Thickness — Alternate',muscles:['Chest','Back','Shoulders','Triceps','Biceps','Traps'],exercises:[
+    ex('machine-chest-d2','Plate-loaded or machine chest press','Chest thickness',2,'8–12','Keep shoulder blades supported and use a comfortable elbow path.',120,['Chest','Triceps','Shoulders']),
+    ex('high-low-fly-d2','High-to-low cable fly','Lower chest',2,'10–15','Sweep down and inward without rolling shoulders forward.',75,['Chest'],FORM_GUIDES.pecFly),
+    ex('chest-row-d2','Chest-supported row','Back thickness',2,'8–12','Keep chest supported and neck neutral.',120,['Back','Traps','Biceps'],FORM_GUIDES.chestRow),
+    ex('db-bench-row-d2','One-arm dumbbell bench row','Back thickness',2,'8–12 per side','Keep shoulders level and avoid torso rotation.',105,['Back','Traps','Biceps'],FORM_GUIDES.dumbbellBenchRow),
+    ex('machine-shrug-d2','Machine or cable shrug','Upper traps',2,'10–15','Move straight up and down; do not roll.',90,['Traps'],FORM_GUIDES.shrug),
+    ex('cable-bar-tri-d2','Cable bar pushdown','Triceps',2,'10–15','Keep elbows pinned and shoulders down.',75,['Triceps'],FORM_GUIDES.barPushdown),
+    ex('cable-curl-d2','Cable curl','Biceps',2,'10–15','Keep upper arms quiet and avoid leaning back.',75,['Biceps']),
+    ex('glute-bridge-d2','Glute bridge or supported hip thrust','KNEE · glutes',2,'10–15','Use a comfortable knee bend and drive from hips.',90,['Lower Body']),
+    crunch('crunch-d2'), cardio('strider-d2')
   ]}
 ];
 
@@ -104,7 +138,7 @@ const state = {
   sessions: loadJSON(STORAGE_KEYS.sessions, {}),
   history: loadJSON(STORAGE_KEYS.history, []),
   settings: {unit:'lb',sound:true,prefill:true,customByDay:{},...loadJSON(STORAGE_KEYS.settings,{})},
-  selectedDay: 'a', installPrompt:null,
+  selectedDay: 'a1', installPrompt:null,
   timer:{preset:90,remaining:90,running:false,interval:null},
   workoutTimer:{running:false,interval:null}
 };
@@ -148,7 +182,7 @@ function bindGlobalActions(){
   els.addExerciseButton.addEventListener('click',()=>els.addExerciseDialog.showModal()); els.addExerciseConfirm.addEventListener('click',addCustomExercise); els.notesField.addEventListener('input',saveNotes);
   els.recommendationButton.addEventListener('click',()=>{state.selectedDay=getSuggestedWorkoutId();renderDayTabs();renderWorkout();window.scrollTo({top:0,behavior:'smooth'});});
   els.clearHistoryButton.addEventListener('click',()=>confirmAction('Clear workout history?','Your completed workout history will be permanently removed from this device.',()=>{state.history=[];saveJSON(STORAGE_KEYS.history,state.history);renderHistory();renderRecommendation();}));
-  els.eraseAllButton.addEventListener('click',()=>confirmAction('Erase all app data?','This removes all active sessions, workout history, and preferences stored on this device.',()=>{Object.values(STORAGE_KEYS).forEach(k=>localStorage.removeItem(k));state.sessions={};state.history=[];state.settings={unit:'lb',sound:true,prefill:true,customByDay:{}};state.selectedDay='a';renderDayTabs();renderWorkout();renderHistory();renderSettings();renderRecommendation();}));
+  els.eraseAllButton.addEventListener('click',()=>confirmAction('Erase all app data?','This removes all active sessions, workout history, and preferences stored on this device.',()=>{Object.values(STORAGE_KEYS).forEach(k=>localStorage.removeItem(k));state.sessions={};state.history=[];state.settings={unit:'lb',sound:true,prefill:true,customByDay:{}};state.selectedDay='a1';renderDayTabs();renderWorkout();renderHistory();renderSettings();renderRecommendation();}));
   els.unitSelect.addEventListener('change',()=>{state.settings.unit=els.unitSelect.value;saveSettings();renderWorkout();});
   els.soundToggle.addEventListener('change',()=>{state.settings.sound=els.soundToggle.checked;saveSettings();}); els.prefillToggle.addEventListener('change',()=>{state.settings.prefill=els.prefillToggle.checked;saveSettings();});
   document.querySelectorAll('.timer-preset').forEach(btn=>btn.addEventListener('click',()=>setTimerPreset(Number(btn.dataset.seconds)))); els.timerToggle.addEventListener('click',toggleTimer); els.timerReset.addEventListener('click',resetTimer);
@@ -156,7 +190,7 @@ function bindGlobalActions(){
 
 function applySavedCustomExercises(){const saved=state.settings.customByDay||{};WORKOUTS.forEach(w=>(saved[w.id]||[]).forEach(item=>{if(!w.exercises.some(exercise=>exercise.id===item.id))w.exercises.push(item);}));}
 
-function renderDayTabs(){els.dayTabs.replaceChildren();WORKOUTS.forEach(w=>{const btn=document.createElement('button');btn.type='button';btn.className=`day-tab${w.id===state.selectedDay?' active':''}`;btn.innerHTML=`Workout ${w.short}<span>${w.title.split(/[,&]/)[0]}</span>`;btn.addEventListener('click',()=>{state.selectedDay=w.id;renderDayTabs();renderWorkout();window.scrollTo({top:0,behavior:'smooth'});});els.dayTabs.append(btn);});}
+function renderDayTabs(){els.dayTabs.replaceChildren();ROTATION.forEach(base=>{const w=getWorkout(nextVariantForBase(base));const btn=document.createElement('button');btn.type='button';btn.className=`day-tab${getWorkout(state.selectedDay).base===base?' active':''}`;btn.innerHTML=`Workout ${base.toUpperCase()}<span>Next: ${w.short}</span>`;btn.addEventListener('click',()=>{state.selectedDay=nextVariantForBase(base);renderDayTabs();renderWorkout();window.scrollTo({top:0,behavior:'smooth'});});els.dayTabs.append(btn);});}
 
 function renderRecommendation(){
   const suggested=getWorkout(getSuggestedWorkoutId()),last=getLastRotationWorkout();
@@ -167,28 +201,41 @@ function renderRecommendation(){
   groups.forEach(group=>{const lastDate=findLastMuscleDate(group),chip=document.createElement('div');chip.className='muscle-chip';chip.innerHTML=`<strong>${group}</strong><span>${lastDate?timeAgo(lastDate):'Not logged'}</span>`;els.muscleStatus.append(chip);});
 }
 
-function getSuggestedWorkoutId(){const last=getLastRotationWorkout();if(!last)return'a';const idx=ROTATION.indexOf(LEGACY_TO_ROTATION[last.workoutId]||last.workoutId);return ROTATION[(idx+1+ROTATION.length)%ROTATION.length]||'a';}
-function getLastRotationWorkout(){return(state.history||[]).find(h=>ROTATION.includes(LEGACY_TO_ROTATION[h.workoutId]||h.workoutId))||null;}
+function getSuggestedWorkoutId(){const last=getLastRotationWorkout();if(!last)return nextVariantForBase('a');const lastBase=workoutBase(last.workoutId);const idx=ROTATION.indexOf(lastBase);const nextBase=ROTATION[(idx+1+ROTATION.length)%ROTATION.length]||'a';return nextVariantForBase(nextBase);}
+function getLastRotationWorkout(){return(state.history||[]).find(h=>ROTATION.includes(workoutBase(h.workoutId)))||null;}
+function workoutBase(id){const mapped=LEGACY_TO_ROTATION[id]||id;return String(mapped).charAt(0);}
+function nextVariantForBase(base){for(const h of state.history||[]){const id=LEGACY_TO_ROTATION[h.workoutId]||h.workoutId;if(workoutBase(id)===base)return id.endsWith('1')?`${base}2`:`${base}1`;}return `${base}1`;}
 function findLastMuscleDate(group){for(const h of state.history){const groups=h.musclesTrained||inferMusclesFromHistory(h);if(groups.includes(group))return h.finishedAt||h.date;}return null;}
 function inferMusclesFromHistory(h){const w=getWorkout(h.workoutId,false);return w?.muscles||[];}
 
 function renderWorkout(){const w=getWorkout(state.selectedDay),session=getOrCreateSession(localDateKey(),w);els.todayLabel.textContent=formatLongDate(new Date());els.workoutHeading.textContent=`Workout ${w.short} — ${w.title}`;els.exerciseList.replaceChildren();els.notesField.value=session.notes||'';renderWorkoutTimer();[...w.exercises,...(session.customExercises||[])].forEach((exercise,index)=>renderExerciseCard(w,session,exercise,index));updateProgress();}
 
 function renderExerciseCard(workout,session,exercise,index){
-  ensureExerciseState(session,exercise);const frag=els.exerciseTemplate.content.cloneNode(true),card=frag.querySelector('.exercise-card'),heading=frag.querySelector('.exercise-heading'),focus=frag.querySelector('.exercise-focus'),name=frag.querySelector('.exercise-name'),target=frag.querySelector('.exercise-target'),cue=frag.querySelector('.exercise-cue'),setsList=frag.querySelector('.sets-list'),weightHeading=frag.querySelector('.weight-heading'),skip=frag.querySelector('.skip-exercise'),exerciseState=session.exercises[exercise.id],body=frag.querySelector('.exercise-body');
-  focus.textContent=exercise.focus;name.textContent=exercise.name;cue.textContent=exercise.cue||'';target.textContent=exercise.type==='cardio'?exercise.reps:`${exercise.sets} sets × ${exercise.reps} reps · ${formatTime(exercise.rest)} rest`;weightHeading.textContent=exercise.type==='cardio'?'Minutes':`Weight (${state.settings.unit})`;
-  card.classList.toggle('skipped',!!exerciseState.skipped);skip.textContent=exerciseState.skipped?'Unskip':'Skip';skip.addEventListener('click',e=>{e.stopPropagation();exerciseState.skipped=!exerciseState.skipped;saveJSON(STORAGE_KEYS.sessions,state.sessions);renderWorkout();});
+  ensureExerciseState(session,exercise);
+  const frag=els.exerciseTemplate.content.cloneNode(true),card=frag.querySelector('.exercise-card'),heading=frag.querySelector('.exercise-heading'),focus=frag.querySelector('.exercise-focus'),name=frag.querySelector('.exercise-name'),target=frag.querySelector('.exercise-target'),cue=frag.querySelector('.exercise-cue'),setsList=frag.querySelector('.sets-list'),weightHeading=frag.querySelector('.weight-heading'),skip=frag.querySelector('.skip-exercise'),exerciseState=session.exercises[exercise.id],body=frag.querySelector('.exercise-body');
+  focus.textContent=exercise.focus; name.textContent=exercise.name; cue.textContent=exercise.cue||'';
+  const activeSets=exerciseState.sets.length;
+  target.textContent=exercise.type==='cardio'?exercise.reps:`${activeSets} sets × ${exercise.reps} reps · ${formatTime(exercise.rest)} rest`;
+  weightHeading.textContent=exercise.type==='cardio'?'Minutes':`Weight (${state.settings.unit})`;
+  card.classList.toggle('skipped',!!exerciseState.skipped); skip.textContent=exerciseState.skipped?'Unskip':'Skip';
+  skip.addEventListener('click',e=>{e.stopPropagation();exerciseState.skipped=!exerciseState.skipped;saveJSON(STORAGE_KEYS.sessions,state.sessions);renderWorkout();});
   if(exercise.form){const formButton=document.createElement('button');formButton.className='form-button';formButton.type='button';formButton.textContent='FORM';formButton.addEventListener('click',e=>{e.stopPropagation();openFormGuide(exercise.form);});body.insertBefore(formButton,cue);}
-  if(index===0||exerciseState.sets.some(x=>x.weight||x.reps||x.done)||exerciseState.skipped){card.classList.add('open');heading.setAttribute('aria-expanded','true');}
+  const prev=exerciseState.previousSets?.length?exerciseState.previousSets:findPreviousExercise(exercise.id)?.sets;
+  if(prev?.length && exercise.type!=='cardio'){const p=document.createElement('div');p.className='previous-performance';p.innerHTML=`<strong>Last time</strong><span>${prev.slice(0,3).map((x,i)=>`S${i+1}: ${escapeHTML(x.weight||'—')} ${state.settings.unit} × ${escapeHTML(x.reps||'—')}`).join(' · ')}</span>`;body.insertBefore(p,body.querySelector('.set-header'));}
+  const completed=exerciseState.sets.length>0&&exerciseState.sets.every(x=>x.done);
+  card.classList.toggle('complete',completed);
+  if(!completed&&(index===0||exerciseState.sets.some(x=>x.weight||x.reps||x.done)||exerciseState.skipped)){card.classList.add('open');heading.setAttribute('aria-expanded','true');}
   heading.addEventListener('click',()=>{const open=card.classList.toggle('open');heading.setAttribute('aria-expanded',String(open));});
-  exerciseState.sets.forEach((set,setIndex)=>{const row=document.createElement('div');row.className=`set-row${set.done?' done':''}`;const cardioMode=exercise.type==='cardio';row.innerHTML=`<span class="set-number">${setIndex+1}</span><input class="set-input weight-input" type="number" inputmode="decimal" min="0" step="0.5" placeholder="—" value="${escapeAttribute(set.weight)}"/><input class="set-input reps-input" type="${cardioMode?'text':'number'}" inputmode="${cardioMode?'text':'numeric'}" min="0" step="1" placeholder="${cardioMode?'intensity':'—'}" value="${escapeAttribute(set.reps)}"/><label class="done-check"><input type="checkbox" ${set.done?'checked':''}/><span></span></label>`;const wi=row.querySelector('.weight-input'),ri=row.querySelector('.reps-input'),cb=row.querySelector('input[type="checkbox"]');wi.addEventListener('input',()=>updateSet(workout,exercise,setIndex,'weight',wi.value));ri.addEventListener('input',()=>updateSet(workout,exercise,setIndex,'reps',ri.value));cb.addEventListener('change',()=>{updateSet(workout,exercise,setIndex,'done',cb.checked);row.classList.toggle('done',cb.checked);updateProgress();if(cb.checked&&exercise.rest){setTimerPreset(exercise.rest,false);startTimer();}});setsList.append(row);});
+  exerciseState.sets.forEach((set,setIndex)=>{const row=document.createElement('div');row.className=`set-row${set.done?' done':''}`;const cardioMode=exercise.type==='cardio';row.innerHTML=`<span class="set-number">${setIndex+1}</span><input class="set-input weight-input" type="number" inputmode="decimal" min="0" step="0.5" placeholder="—" value="${escapeAttribute(set.weight)}"/><input class="set-input reps-input" type="${cardioMode?'text':'number'}" inputmode="${cardioMode?'text':'numeric'}" min="0" step="1" placeholder="${cardioMode?'intensity':'—'}" value="${escapeAttribute(set.reps)}"/><label class="done-check"><input type="checkbox" ${set.done?'checked':''}/><span></span></label>`;const wi=row.querySelector('.weight-input'),ri=row.querySelector('.reps-input'),cb=row.querySelector('input[type="checkbox"]');wi.addEventListener('input',()=>updateSet(workout,exercise,setIndex,'weight',wi.value));ri.addEventListener('input',()=>updateSet(workout,exercise,setIndex,'reps',ri.value));cb.addEventListener('change',()=>{updateSet(workout,exercise,setIndex,'done',cb.checked);if(cb.checked&&exercise.rest){setTimerPreset(exercise.rest,false);startTimer();}renderWorkout();});setsList.append(row);});
+  if(exercise.type!=='cardio'&&exerciseState.sets.length===2){const add=document.createElement('button');add.type='button';add.className='add-third-set';add.textContent='+ Add 3rd set';add.addEventListener('click',()=>{const previous=prev?.[2]||prev?.[1]||{};exerciseState.sets.push({weight:previous.weight||exerciseState.sets[1]?.weight||'',reps:'',done:false});saveJSON(STORAGE_KEYS.sessions,state.sessions);renderWorkout();});body.append(add);}
   els.exerciseList.append(frag);
 }
 
 function openFormGuide(form){
   els.formTitle.textContent=form.title;
   const meta=getFormMeta(form.type);
-  els.formVisual.innerHTML=buildFormVisual(form.type);
+  els.formVisual.innerHTML='';
+  els.formVisual.hidden=true;
   els.formTargets.textContent=meta.targets.join(' · ');
   els.formJoints.innerHTML=meta.joints.map(x=>`<li>${escapeHTML(x)}</li>`).join('');
   els.formCues.innerHTML=form.cues.map(x=>`<li>${escapeHTML(x)}</li>`).join('');
@@ -231,7 +278,7 @@ function buildFormVisual(type){
   return `<div class="anatomy-wrap"><svg class="form-svg anatomy-svg ${cls} ${targetClass}" viewBox="0 0 320 220" role="img" aria-label="Animated joint-position and movement guide"><line class="floor" x1="24" y1="192" x2="296" y2="192"/>${equipment}<g class="figure"><circle class="head" cx="160" cy="43" r="18"/><rect class="neck" x="152" y="59" width="16" height="14" rx="7"/><path class="torso-shape" d="M132 72 Q160 62 188 72 L180 132 Q160 145 140 132 Z"/><ellipse class="pelvis" cx="160" cy="137" rx="23" ry="12"/><path class="muscle muscle-front" d="M143 78 Q160 69 177 78 L173 106 Q160 113 147 106 Z"/><path class="muscle muscle-back" d="M138 79 Q160 67 182 79 L176 110 Q160 120 144 110 Z"/><path class="muscle muscle-lower" d="M146 145 L157 145 L151 181 L137 181 Z M163 145 L174 145 L183 181 L169 181 Z"/><g class="arm-left limb"><line class="upper" x1="137" y1="80" x2="112" y2="112"/><circle class="joint shoulder" cx="137" cy="80" r="6"/><circle class="joint elbow" cx="112" cy="112" r="6"/><line class="fore" x1="112" y1="112" x2="104" y2="148"/><circle class="hand" cx="104" cy="151" r="6"/></g><g class="arm-right limb"><line class="upper" x1="183" y1="80" x2="208" y2="112"/><circle class="joint shoulder" cx="183" cy="80" r="6"/><circle class="joint elbow" cx="208" cy="112" r="6"/><line class="fore" x1="208" y1="112" x2="216" y2="148"/><circle class="hand" cx="216" cy="151" r="6"/></g><g class="leg-left"><line class="thigh" x1="148" y1="145" x2="135" y2="168"/><circle class="joint knee" cx="135" cy="168" r="6"/><line class="shin" x1="135" y1="168" x2="128" y2="190"/></g><g class="leg-right"><line class="thigh" x1="172" y1="145" x2="185" y2="168"/><circle class="joint knee" cx="185" cy="168" r="6"/><line class="shin" x1="185" y1="168" x2="192" y2="190"/></g></g><path class="motion-path" d="M102 158 Q160 83 218 158"/><g class="joint-labels"><text x="194" y="58">neck neutral</text><text x="206" y="84">shoulder</text><text x="217" y="116">elbow</text></g></svg><div class="visual-caption"><strong>Animated position guide</strong> · focus on joint alignment and the highlighted movement path. Use a comfortable, pain-free range.</div></div>`;
 }
 
-function ensureExerciseState(session,exercise){if(!session.exercises[exercise.id])session.exercises[exercise.id]={sets:Array.from({length:exercise.sets},()=>({weight:'',reps:'',done:false})),skipped:false};else if(session.exercises[exercise.id].sets.length!==exercise.sets){const old=session.exercises[exercise.id].sets;session.exercises[exercise.id].sets=Array.from({length:exercise.sets},(_,i)=>old[i]||{weight:'',reps:'',done:false});}}
+function ensureExerciseState(session,exercise){if(!session.exercises[exercise.id])session.exercises[exercise.id]={sets:Array.from({length:exercise.sets},()=>({weight:'',reps:'',done:false})),skipped:false};else if(session.exercises[exercise.id].sets.length<exercise.sets){while(session.exercises[exercise.id].sets.length<exercise.sets)session.exercises[exercise.id].sets.push({weight:'',reps:'',done:false});}}
 function updateSet(workout,exercise,setIndex,field,value){const session=getOrCreateSession(localDateKey(),workout);session.exercises[exercise.id].sets[setIndex][field]=value;session.updatedAt=new Date().toISOString();saveJSON(STORAGE_KEYS.sessions,state.sessions);}
 function updateProgress(){const w=getWorkout(state.selectedDay),session=getOrCreateSession(localDateKey(),w),all=[...w.exercises,...(session.customExercises||[])];let total=0,completed=0;all.forEach(exercise=>{ensureExerciseState(session,exercise);const d=session.exercises[exercise.id];if(d.skipped)return;total+=d.sets.length;completed+=d.sets.filter(x=>x.done).length;});els.progressText.textContent=`${completed} / ${total}`;els.progressBar.style.width=`${total?(completed/total)*100:0}%`;els.finishWorkoutButton.disabled=completed===0;els.finishWorkoutButton.textContent=completed===total&&total?'Finish completed workout':'Finish workout';}
 
@@ -242,13 +289,13 @@ function finishWorkout(){
 }
 
 function resetCurrentSession(){const w=getWorkout(state.selectedDay);delete state.sessions[`${localDateKey()}:${w.id}`];saveJSON(STORAGE_KEYS.sessions,state.sessions);renderWorkout();}
-function getOrCreateSession(dateKey,w){const key=`${dateKey}:${w.id}`;if(!state.sessions[key]){state.sessions[key]={date:dateKey,workoutId:w.id,updatedAt:new Date().toISOString(),exercises:{},customExercises:[],notes:'',timerStartedAt:null,timerElapsed:0};w.exercises.forEach(exercise=>{const previous=state.settings.prefill?findPreviousExercise(exercise.id):null;state.sessions[key].exercises[exercise.id]={sets:Array.from({length:exercise.sets},(_,i)=>({weight:previous?.sets?.[i]?.weight||previous?.sets?.[0]?.weight||'',reps:'',done:false})),skipped:false};});saveJSON(STORAGE_KEYS.sessions,state.sessions);}return state.sessions[key];}
+function getOrCreateSession(dateKey,w){const key=`${dateKey}:${w.id}`;if(!state.sessions[key]){state.sessions[key]={date:dateKey,workoutId:w.id,updatedAt:new Date().toISOString(),exercises:{},customExercises:[],notes:'',timerStartedAt:null,timerElapsed:0};w.exercises.forEach(exercise=>{const previous=state.settings.prefill?findPreviousExercise(exercise.id):null;state.sessions[key].exercises[exercise.id]={sets:Array.from({length:exercise.sets},(_,i)=>({weight:previous?.sets?.[i]?.weight||previous?.sets?.[0]?.weight||'',reps:'',done:false})),skipped:false,previousSets:previous?.sets?JSON.parse(JSON.stringify(previous.sets)):[]};});saveJSON(STORAGE_KEYS.sessions,state.sessions);}return state.sessions[key];}
 function findPreviousExercise(id){for(const entry of state.history){if((entry.unit||'lb')===state.settings.unit&&entry.exercises?.[id])return entry.exercises[id];}return null;}
 
 function renderHistory(){els.historyList.replaceChildren();if(!state.history.length){const e=document.createElement('div');e.className='history-empty';e.textContent='No completed workouts yet. Finish a workout and it will appear here.';els.historyList.append(e);return;}state.history.forEach(entry=>{const w=getWorkout(entry.workoutId,false),card=document.createElement('article');card.className='history-card';const summary=document.createElement('button');summary.type='button';summary.className='history-summary';summary.innerHTML=`<span><strong>${escapeHTML(entry.workoutTitle||w?.title||'Workout')}</strong><small>${formatHistoryDate(entry.finishedAt||entry.date)}</small></span><span class="history-badge">${entry.completedSets}/${entry.totalSets} sets</span>`;const details=document.createElement('div');details.className='history-details';const meta=document.createElement('p');meta.className='history-meta';meta.textContent=`Duration: ${formatDuration(entry.duration||0)}${entry.skipped?.length?' · Skipped: '+entry.skipped.length:''}`;details.append(meta);const exercises=w?[...w.exercises,...(entry.customExercises||[])]:entry.customExercises||[];exercises.forEach(exercise=>{const data=entry.exercises?.[exercise.id];if(!data)return;const completed=data.sets?.filter(set=>set.done||set.weight||set.reps)||[];if(!completed.length)return;const item=document.createElement('div');item.className='history-exercise';const text=completed.map((set,i)=>`S${i+1}: ${set.weight?set.weight+' '+(entry.unit||'lb'):'—'} × ${set.reps||'—'}`).join(' · ');item.innerHTML=`<strong>${escapeHTML(exercise.name)}</strong><small>${escapeHTML(text)}</small>`;details.append(item);});if(entry.notes){const n=document.createElement('p');n.className='history-note';n.textContent='Notes: '+entry.notes;details.append(n);}summary.addEventListener('click',()=>card.classList.toggle('open'));card.append(summary,details);els.historyList.append(card);});}
 
 function saveNotes(){const session=getOrCreateSession(localDateKey(),getWorkout(state.selectedDay));session.notes=els.notesField.value;saveJSON(STORAGE_KEYS.sessions,state.sessions);}
-function addCustomExercise(event){event.preventDefault();const name=els.customName.value.trim();if(!name)return;const w=getWorkout(state.selectedDay),session=getOrCreateSession(localDateKey(),w),sets=Math.max(1,Math.min(10,Number(els.customSets.value)||3)),focus=els.customCategory.value;const item={id:`custom-${Date.now()}`,name,focus,sets,reps:els.customReps.value.trim()||'8–12',cue:els.customNote.value.trim(),rest:90,muscles:categoryToMuscles(focus),custom:true};session.customExercises.push(item);ensureExerciseState(session,item);if(els.saveCustomDay.checked){state.settings.customByDay=state.settings.customByDay||{};state.settings.customByDay[w.id]=state.settings.customByDay[w.id]||[];state.settings.customByDay[w.id].push(item);w.exercises.push(item);session.customExercises=session.customExercises.filter(x=>x.id!==item.id);saveSettings();}saveJSON(STORAGE_KEYS.sessions,state.sessions);els.customName.value='';els.customNote.value='';els.saveCustomDay.checked=false;els.addExerciseDialog.close();renderDayTabs();renderWorkout();}
+function addCustomExercise(event){event.preventDefault();const name=els.customName.value.trim();if(!name)return;const w=getWorkout(state.selectedDay),session=getOrCreateSession(localDateKey(),w),sets=Math.max(1,Math.min(10,Number(els.customSets.value)||2)),focus=els.customCategory.value;const item={id:`custom-${Date.now()}`,name,focus,sets,reps:els.customReps.value.trim()||'8–12',cue:els.customNote.value.trim(),rest:90,muscles:categoryToMuscles(focus),custom:true};session.customExercises.push(item);ensureExerciseState(session,item);if(els.saveCustomDay.checked){state.settings.customByDay=state.settings.customByDay||{};state.settings.customByDay[w.id]=state.settings.customByDay[w.id]||[];state.settings.customByDay[w.id].push(item);w.exercises.push(item);session.customExercises=session.customExercises.filter(x=>x.id!==item.id);saveSettings();}saveJSON(STORAGE_KEYS.sessions,state.sessions);els.customName.value='';els.customNote.value='';els.saveCustomDay.checked=false;els.addExerciseDialog.close();renderDayTabs();renderWorkout();}
 function categoryToMuscles(focus){const s=(focus||'').toLowerCase(),out=[];if(s.includes('chest'))out.push('Chest');if(s.includes('back'))out.push('Back');if(s.includes('should'))out.push('Shoulders');if(s.includes('bicep'))out.push('Biceps');if(s.includes('tricep')||s.includes('arm'))out.push('Triceps');if(s.includes('trap'))out.push('Traps');if(s.includes('lower')||s.includes('leg'))out.push('Lower Body');if(s.includes('core')||s.includes('ab'))out.push('Core');return out.length?out:['Custom'];}
 
 function renderSettings(){els.unitSelect.value=state.settings.unit;els.soundToggle.checked=!!state.settings.sound;els.prefillToggle.checked=!!state.settings.prefill;}
@@ -270,7 +317,7 @@ function playTone(){try{const C=window.AudioContext||window.webkitAudioContext,c
 function setupInstallHandling(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();state.installPrompt=e;});els.installButton.addEventListener('click',async()=>{if(state.installPrompt){state.installPrompt.prompt();await state.installPrompt.userChoice;state.installPrompt=null;return;}const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);els.installDialogContent.innerHTML=ios?'<p>In Safari, tap <strong>Share</strong>, choose <strong>Add to Home Screen</strong>, then tap <strong>Add</strong>.</p>':'<p>Use your browser menu and choose <strong>Install app</strong> or <strong>Add to Home Screen</strong>.</p>';els.installDialog.showModal();});}
 function registerServiceWorker(){if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});}
 
-function getWorkout(id,strict=true){const mapped=LEGACY_TO_ROTATION[id]||id,w=WORKOUTS.find(x=>x.id===mapped);if(w)return w;if(strict)return WORKOUTS[0];return null;}
+function getWorkout(id,strict=true){const exact=WORKOUTS.find(x=>x.id===id);if(exact)return exact;const mapped=LEGACY_TO_ROTATION[id]||id,w=WORKOUTS.find(x=>x.id===mapped);if(w)return w;if(strict)return WORKOUTS[0];return null;}
 function confirmAction(title,message,fn){els.confirmTitle.textContent=title;els.confirmMessage.textContent=message;const handler=()=>{if(els.confirmDialog.returnValue==='confirm')fn();els.confirmDialog.removeEventListener('close',handler);};els.confirmDialog.addEventListener('close',handler);els.confirmDialog.showModal();}
 function showToast(text){let toast=document.querySelector('.toast');if(!toast){toast=document.createElement('div');toast.className='toast';document.body.append(toast);}toast.textContent=text;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),2300);}
 function loadJSON(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}}

@@ -411,3 +411,12 @@ dialog { width: min(calc(100% - 28px), 480px); padding: 0; border: 1px solid var
 @keyframes form-arm{to{transform:translateY(-8px)}}@keyframes form-press{to{transform:translateY(-34px) scaleY(.9)}}@keyframes form-overhead{to{transform:translateY(-50px) rotate(10deg)}}@keyframes form-fly-left{to{transform:rotate(38deg)}}@keyframes form-fly-right{to{transform:rotate(-38deg)}}@keyframes form-row-left{to{transform:rotate(-28deg) translateX(10px)}}@keyframes form-row-right{to{transform:rotate(28deg) translateX(-10px)}}@keyframes form-pull-left{to{transform:rotate(-42deg) translateY(-12px)}}@keyframes form-pull-right{to{transform:rotate(42deg) translateY(-12px)}}@keyframes form-down-left{to{transform:rotate(16deg) translateY(18px)}}@keyframes form-down-right{to{transform:rotate(-16deg) translateY(18px)}}@keyframes form-y-left{to{transform:rotate(52deg) translateY(-16px)}}@keyframes form-y-right{to{transform:rotate(-52deg) translateY(-16px)}}@keyframes form-shrug{to{transform:translateY(-9px)}}@keyframes form-hinge{to{transform:rotate(16deg)}}@keyframes form-knee{to{transform:rotate(18deg)}}
 @media (prefers-reduced-motion:reduce){.anatomy-svg *{animation:none!important}}
 @media(max-width:520px){.recommendation-card{grid-template-columns:1fr}.recommendation-card .secondary-button{width:100%}.muscle-status{grid-template-columns:repeat(2,1fr)}.form-guide-grid{grid-template-columns:1fr}.day-tab span{font-size:.58rem}}
+/* V4 workout completion + progression */
+.exercise-card.complete{background:var(--surface-2);border-color:var(--border);opacity:.58;box-shadow:none}
+.exercise-card.complete .exercise-focus{background:var(--surface-3);color:var(--muted)}
+.exercise-card.complete .exercise-name::before{content:'✓ ';}
+.exercise-card.complete:not(.open) .exercise-heading{min-height:66px}
+.previous-performance{display:flex;flex-direction:column;gap:4px;margin:0 0 12px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);font-size:.76rem;color:var(--muted)}
+.previous-performance strong{color:var(--text);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}
+.add-third-set{width:100%;margin-top:10px;padding:11px;border:1px dashed var(--border);border-radius:12px;background:transparent;color:var(--accent);font-weight:800}
+.form-visual[hidden]{display:none!important}
